@@ -16,8 +16,8 @@ html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antiali
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background: #0d0d1a;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
   line-height: 1.7;
 }
@@ -26,17 +26,17 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== TOKENS ===== */
 :root {
-  --bg:      #0d0d1a;
-  --surface: #1a1a2e;
-  --surface2: #16213e;
+  --bg:      #fafafa;
+  --surface: #f0f0ff;
+  --surface2: #fff0f8;
   --pink:    #ff2d78;
-  --cyan:    #00e5ff;
-  --yellow:  #ffe600;
-  --purple:  #a855f7;
-  --green:   #00e676;
+  --cyan:    #009bb5;
+  --yellow:  #f5a000;
+  --purple:  #8b2fde;
+  --green:   #00a855;
   --orange:  #ff6b35;
-  --text:    #ffffff;
-  --muted:   #b0b0c0;
+  --text:    #111122;
+  --muted:   #555570;
 }
 
 /* ===== UTILITY ===== */
@@ -67,9 +67,9 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(13,13,26,0.9);
+  background: rgba(250,250,250,0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 .nav-logo {
   font-family: 'Fredoka One', cursive;
@@ -107,11 +107,11 @@ a { text-decoration: none; color: inherit; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 30%, rgba(255,45,120,0.25) 0%, transparent 45%),
-    radial-gradient(ellipse at 80% 20%, rgba(0,229,255,0.2) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 80%, rgba(168,85,247,0.2) 0%, transparent 45%),
-    radial-gradient(ellipse at 90% 70%, rgba(255,230,0,0.1) 0%, transparent 35%),
-    var(--bg);
+    radial-gradient(ellipse at 20% 30%, rgba(255,45,120,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,199,255,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 85%, rgba(168,85,247,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 65%, rgba(255,180,0,0.14) 0%, transparent 40%),
+    linear-gradient(160deg, #fff8ff 0%, #f0f8ff 50%, #fffde8 100%);
 }
 
 /* 浮遊する図形 */
@@ -123,7 +123,7 @@ a { text-decoration: none; color: inherit; }
 }
 .shape {
   position: absolute;
-  opacity: 0.15;
+  opacity: 0.35;
 }
 .shape-circle-1 {
   width: 200px; height: 200px;
@@ -214,7 +214,7 @@ a { text-decoration: none; color: inherit; }
 .hero-catch {
   font-size: clamp(1rem, 4vw, 1.2rem);
   font-weight: 700;
-  color: #fff;
+  color: var(--text);
   margin-bottom: 8px;
   letter-spacing: 0.05em;
 }
@@ -298,8 +298,8 @@ a { text-decoration: none; color: inherit; }
   gap: 12px;
 }
 .content-card {
-  background: var(--bg);
-  border: 1.5px solid rgba(255,255,255,0.06);
+  background: #ffffff;
+  border: 1.5px solid rgba(0,0,0,0.08);
   border-radius: 16px;
   padding: 22px 16px;
   text-align: center;
@@ -317,8 +317,8 @@ a { text-decoration: none; color: inherit; }
 }
 .content-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255,255,255,0.15);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  border-color: rgba(0,0,0,0.12);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1);
 }
 .card-icon {
   width: 52px; height: 52px;
@@ -361,7 +361,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1.5px solid rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(0,0,0,0.07);
   transition: transform 0.2s ease;
   position: relative;
   overflow: hidden;
@@ -430,10 +430,11 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 16px;
-  background: var(--bg);
+  background: #ffffff;
   border-radius: 12px;
   padding: 16px 18px;
   border-left: 4px solid var(--floor-color, var(--pink));
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 .floor-num {
   font-family: 'Space Grotesk', sans-serif;
@@ -458,7 +459,7 @@ a { text-decoration: none; color: inherit; }
 }
 .floor-tag {
   font-size: 0.6rem;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(0,0,0,0.12);
   color: var(--muted);
   padding: 2px 8px;
   border-radius: 50px;
@@ -468,9 +469,9 @@ a { text-decoration: none; color: inherit; }
 .campaign-section {
   padding: 60px 0;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(255,45,120,0.2) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 50%, rgba(0,229,255,0.15) 0%, transparent 50%),
-    var(--bg);
+    radial-gradient(ellipse at 30% 50%, rgba(255,45,120,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(0,199,255,0.10) 0%, transparent 50%),
+    linear-gradient(135deg, #fff8fe 0%, #f8fcff 100%);
 }
 .campaign-card {
   border: 2px solid var(--yellow);
@@ -479,12 +480,14 @@ a { text-decoration: none; color: inherit; }
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 8px 32px rgba(245,160,0,0.12);
 }
 .campaign-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255,230,0,0.04);
+  background: rgba(245,160,0,0.03);
 }
 .campaign-pulse {
   display: inline-flex;
@@ -527,7 +530,7 @@ a { text-decoration: none; color: inherit; }
 .cta-title {
   font-family: 'Fredoka One', cursive;
   font-size: clamp(1.6rem, 6vw, 2rem);
-  color: #fff;
+  color: var(--text);
   margin-bottom: 8px;
   line-height: 1.3;
 }
@@ -585,8 +588,8 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== FOOTER ===== */
 footer {
-  background: var(--bg);
-  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,0.08);
   padding: 40px 0;
   text-align: center;
 }
@@ -607,8 +610,28 @@ footer {
 }
 .footer-copy {
   font-size: 0.65rem;
-  color: rgba(255,255,255,0.2);
+  color: rgba(0,0,0,0.3);
 }
+
+/* ===== HERO IMAGE STRIP ===== */
+.hero-image-strip {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0 0 24px 24px;
+  filter: brightness(0.92) saturate(1.2);
+  margin-bottom: -24px;
+}
+
+/* ===== SECTION CARD NAMES ===== */
+.card-name { color: var(--text); }
+
+/* ===== PRICE NUMS VISIBLE ON LIGHT BG ===== */
+.price-name { color: var(--text); }
+.floor-name { color: var(--text); }
+.section-title-pop { color: var(--text); }
 
 /* ===== RESPONSIVE ===== */
 @media (min-width: 480px) {
@@ -658,6 +681,13 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ===== HERO IMAGE ===== -->
+<img
+  src="https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&q=80"
+  alt="Entertainment facility"
+  class="hero-image-strip"
+/>
 
 <!-- ===== CONTENT ===== -->
 <section class="content-section" id="content">
