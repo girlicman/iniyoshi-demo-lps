@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salon Lumière | 完全予約制 プライベートエステサロン</title>
+<meta name="description" content="天神エリアのプライベートエステサロン。最先端のフェイシャルトリートメントで、光に満ちた素肌へ。完全予約制・完全個室。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  color: #3a3a3a;
+  background: #fefefe;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ===== COLOR TOKENS ===== */
+:root {
+  --white: #fefefe;
+  --cream: #faf8f5;
+  --gold: #c9a84c;
+  --gold-light: #d4ba6a;
+  --gold-pale: #f0e6c8;
+  --pink: #f5c6d0;
+  --pink-deep: #e8a0b4;
+  --pink-pale: #fdf0f3;
+  --text-dark: #2d2d2d;
+  --text-mid: #5a5a5a;
+  --text-light: #8a8a8a;
+  --bg-warm: #fdfbf7;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.serif { font-family: 'Noto Serif JP', serif; }
+.eng { font-family: 'Cormorant Garamond', serif; }
+
+/* ===== BACKGROUNDS ===== */
+.bg-washi {
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(245,198,208,0.08) 0%, transparent 50%);
+}
+.bg-gold-mist {
+  background: linear-gradient(170deg, #fdfbf7 0%, #f8f2e4 40%, #fdf0f3 100%);
+}
+.bg-pink-soft {
+  background-color: var(--pink-pale);
+  background-image:
+    radial-gradient(ellipse at 30% 30%, rgba(245,198,208,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(201,168,76,0.05) 0%, transparent 60%);
+}
+
+/* ===== UTILITY ===== */
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.text-center { text-align: center; }
+
+.gold-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 20px auto;
+}
+
+/* ===== FADE-IN ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== SECTION HEADER ===== */
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 60% 30%, rgba(245,198,208,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 70%, rgba(201,168,76,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(245,198,208,0.25) 0%, transparent 45%),
+    linear-gradient(160deg, #faf8f5 0%, #f5eee8 40%, #fdeef3 100%);
+}
+
+/* 装飾SVG */
+.hero-deco {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-deco svg {
+  position: absolute;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 28px 56px;
+  width: 100%;
+}
+
+.hero-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.hero-catch {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(2.2rem, 8vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.hero-sub {
+  font-size: 0.84rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--text-mid);
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.hero-scroll span {
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: var(--gold-light);
+  margin: 0 auto;
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ===== WORRY SECTION ===== */
+.worry-section { padding: 72px 0 64px; }
+
+.worry-lead {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 2;
+  letter-spacing: 0.06em;
+  color: var(--text-dark);
+  margin-bottom: 36px;
+}
+
+.worry-list { list-style: none; }
+.worry-list li {
+  position: relative;
+  padding: 13px 0 13px 20px;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.worry-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--pink-deep);
+}
+
+.worry-answer {
+  margin-top: 44px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+}
+
+/* ===== CSS BREAK BAND ===== */
+.css-break {
+  width: 100%;
+  padding: 64px 0;
+  position: relative;
+  overflow: hidden;
+}
+.css-break-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.css-break-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+.css-break-sub {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  margin-top: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* ===== CONCEPT SECTION ===== */
+.concept-section { padding: 80px 0; }
+
+.concept-body {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 2.2;
+  color: var(--text-mid);
+  letter-spacing: 0.04em;
+}
+
+/* ===== FEATURES ===== */
+.features-section { padding: 72px 0; }
+.feature-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 36px;
+}
+.feature-icon {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  display: flex; align-items: center; justify-content: center;
+}
+.feature-icon svg { width: 22px; height: 22px; }
+.feature-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.feature-desc {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+/* ===== MENU SECTION ===== */
+.menu-section { padding: 80px 0; }
+.menu-card {
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 4px;
+  padding: 28px 24px;
+  margin-bottom: 20px;
+  background: var(--white);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.menu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.12);
+}
+.menu-badge {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-pale);
+  padding: 3px 10px;
+  margin-bottom: 14px;
+}
+.menu-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+.menu-desc {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.menu-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+.menu-price span {
+  font-size: 0.75rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text-light);
+  margin-left: 4px;
+}
+
+/* ===== VOICE SECTION ===== */
+.voice-section { padding: 80px 0; }
+.voice-card {
+  background: var(--cream);
+  border-radius: 12px 12px 12px 0;
+  padding: 22px 20px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.voice-card::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; left: 20px;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 0;
+  border-color: var(--cream) transparent transparent transparent;
+}
+.voice-text {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+  margin-bottom: 14px;
+}
+.voice-meta {
+  display: flex; align-items: center; gap: 12px;
+}
+.voice-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--pink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  color: var(--pink-deep);
+}
+.voice-name {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+.voice-stars {
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+/* ===== SALON INFO ===== */
+.salon-section { padding: 80px 0; }
+.info-table { width: 100%; }
+.info-row {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  font-size: 0.85rem;
+}
+.info-label {
+  min-width: 80px;
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.info-value {
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+/* MAP PLACEHOLDER */
+.map-placeholder {
+  width: 100%;
+  height: 160px;
+  background:
+    linear-gradient(135deg, #f0ede6 0%, #e8e2d8 100%);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 8px;
+  color: var(--text-light);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 80px 0;
+  text-align: center;
+}
+.cta-urgency {
+  display: inline-block;
+  background: var(--pink-pale);
+  color: var(--pink-deep);
+  font-size: 0.75rem;
+  padding: 6px 18px;
+  border-radius: 40px;
+  margin-bottom: 24px;
+  letter-spacing: 0.06em;
+}
+.cta-catch {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+.cta-sub {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.cta-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 14px;
+  padding: 18px 24px;
+  border-radius: 60px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.cta-btn-primary {
+  background: var(--gold);
+  color: #fff;
+}
+.cta-btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+}
+.cta-btn-line {
+  background: #fff;
+  color: #06C755;
+  border: 1.5px solid #06C755;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.cta-btn-line:hover {
+  background: #06C755;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.cta-note {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* ===== FLOATING CTA ===== */
+.floating-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(253,251,247,0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  padding: 12px 20px;
+  display: flex;
+  gap: 10px;
+}
+.float-btn {
+  flex: 1;
+  padding: 14px 10px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+}
+.float-btn-gold {
+  background: var(--gold);
+  color: #fff;
+}
+.float-btn-gold:hover { background: var(--gold-light); }
+.float-btn-line {
+  background: #06C755;
+  color: #fff;
+}
+.float-btn-line:hover { background: #05b34c; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--text-dark);
+  padding: 40px 0 100px;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+.footer-sub {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 640px) {
+  .container { max-width: 640px; }
+  .section-title { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-deco">
+    <!-- 装飾SVG：花びら・円弧 -->
+    <svg width="300" height="300" style="top:-40px;right:-60px;" viewBox="0 0 300 300" fill="none">
+      <circle cx="150" cy="150" r="120" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+      <circle cx="150" cy="150" r="90" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
+      <circle cx="150" cy="150" r="60" stroke="rgba(245,198,208,0.2)" stroke-width="1"/>
+    </svg>
+    <svg width="200" height="200" style="bottom:80px;left:-40px;" viewBox="0 0 200 200" fill="none">
+      <circle cx="100" cy="100" r="80" stroke="rgba(245,198,208,0.18)" stroke-width="1"/>
+      <circle cx="100" cy="100" r="50" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+    </svg>
+    <!-- 金のライン装飾 -->
+    <svg width="2" height="80" style="top:30%;right:32px;">
+      <line x1="1" y1="0" x2="1" y2="80" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+    </svg>
+    <svg width="2" height="50" style="top:50%;right:32px;margin-top:16px;">
+      <line x1="1" y1="0" x2="1" y2="50" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="hero-content fade-in" style="transition-delay:0.2s">
+    <p class="hero-label">Private Esthetic Salon</p>
+    <h1 class="hero-catch serif">
+      光に満ちた<br>素肌へ。
+    </h1>
+    <p class="hero-sub">
+      完全予約制・完全個室。<br>
+      あなただけの時間と、<br>あなただけの素肌のために。
+    </p>
+    <a href="https://lin.ee/6ArK0h8" class="cta-btn cta-btn-line" style="max-width:240px; display:flex; align-items:center; justify-content:center; gap:8px; padding:16px 24px; border-radius:60px; background:#fff; color:#06C755; border:1.5px solid #06C755; font-size:0.88rem; letter-spacing:0.1em; transition:all 0.3s ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINE で無料相談
+    </a>
+  </div>
+  <div class="hero-scroll"><span></span></div>
+</section>
+
+<!-- ===== WORRY ===== -->
+<section class="worry-section bg-washi">
+  <div class="container">
+    <p class="worry-lead serif fade-in">
+      こんなお悩み、<br>ありませんか？
+    </p>
+    <ul class="worry-list">
+      <li class="fade-in">肌のくすみ・毛穴の開きが気になる</li>
+      <li class="fade-in">乾燥・インナードライが続いている</li>
+      <li class="fade-in">年齢とともにハリ・弾力が落ちてきた</li>
+      <li class="fade-in">市販のスキンケアでは物足りない</li>
+      <li class="fade-in">自分だけのためのサロン時間がほしい</li>
+    </ul>
+    <p class="worry-answer fade-in">
+      Salon Lumière は、そのすべてに<br>答えを持っています。
+    </p>
+  </div>
+</section>
+
+<!-- ===== CSS BREAK 1 ===== -->
+<div class="css-break" style="background:linear-gradient(135deg, #f8f2e4 0%, #fdeef3 50%, #f8f2e4 100%);">
+  <div class="css-break-inner fade-in">
+    <p class="css-break-text">Lumière</p>
+    <p class="css-break-sub">光のような透明感を、あなたの肌へ</p>
+  </div>
+</div>
+
+<!-- ===== CONCEPT ===== -->
+<section class="concept-section bg-gold-mist">
+  <div class="container fade-in">
+    <p class="section-label">Concept</p>
+    <h2 class="section-title">肌を知り、<br>肌と対話する。</h2>
+    <div class="gold-line"></div>
+    <p class="concept-body">
+      Salon Lumière は「一人一肌」を理念に掲げる、<br>
+      完全プライベートのエステサロンです。<br><br>
+      すべての施術はカウンセリングから始まり、<br>
+      その日のあなたの肌状態に合わせて<br>
+      施術の内容・圧力・使用コスメを細やかに調整します。<br><br>
+      画一的なケアではなく、<br>あなただけの「光」を引き出す一手を。
+    </p>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features-section bg-washi">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <p class="section-label">Why Lumière</p>
+      <h2 class="section-title">選ばれる3つの理由</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <div class="feature-item fade-in">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+          <path stroke-linecap="round" d="M12 6v1M12 17v1M6 12h1M17 12h1"/>
+        </svg>
+      </div>
+      <div>
+        <p class="feature-title">完全個室・完全予約制</p>
+        <p class="feature-desc">他のお客様と顔を合わせることなく、<br>リラックスした空間で施術を受けられます。</p>
+      </div>
+    </div>
+
+    <div class="feature-item fade-in">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+        </svg>
+      </div>
+      <div>
+        <p class="feature-title">最新フェイシャル技術</p>
+        <p class="feature-desc">最先端の美容機器と厳選したドイツ製コスメを組み合わせ、<br>サロンでしか体験できない素肌へ。</p>
+      </div>
+    </div>
+
+    <div class="feature-item fade-in">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path stroke-linecap="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z"/>
+          <path stroke-linecap="round" d="M12 7v5l3 3"/>
+        </svg>
+      </div>
+      <div>
+        <p class="feature-title">丁寧なアフターフォロー</p>
+        <p class="feature-desc">施術後もLINEでホームケアのご相談を承ります。<br>サロンの時間が、毎日に続きます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU ===== -->
+<section class="menu-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">Menu</p>
+      <h2 class="section-title">あなたの肌に、<br>最適な一手を。</h2>
+    </div>
+
+    <div class="menu-card fade-in">
+      <span class="menu-badge">Lumière Signature</span>
+      <p class="menu-name">ルミエール フェイシャル</p>
+      <p class="menu-desc">クレンジング・角質ケア・美容液導入・マスクの<br>4ステップで素肌を徹底的に整えます。</p>
+      <p class="menu-price">¥15,000<span>（90分）</span></p>
+    </div>
+
+    <div class="menu-card fade-in">
+      <span class="menu-badge">Brightening</span>
+      <p class="menu-name">くすみ集中ケア</p>
+      <p class="menu-desc">美白有効成分を高濃度で導入。くすみ・色ムラを<br>集中的にアプローチし、透明感を引き出します。</p>
+      <p class="menu-price">¥12,000<span>（60分）</span></p>
+    </div>
+
+    <div class="menu-card fade-in">
+      <span class="menu-badge">First Visit</span>
+      <p class="menu-name">体験トリートメント</p>
+      <p class="menu-desc">はじめての方向けの特別コース。<br>カウンセリング込みでサロンの雰囲気を体験できます。</p>
+      <p class="menu-price">¥5,500<span>（60分 / 初回限定）</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CSS BREAK 2 ===== -->
+<div class="css-break bg-pink-soft">
+  <div class="container css-break-inner fade-in">
+    <p class="section-label" style="text-align:center;">Voice</p>
+    <p class="section-title text-center" style="font-size:1.4rem; margin-bottom:0;">お客様の声</p>
+  </div>
+</div>
+
+<!-- ===== VOICE ===== -->
+<section class="voice-section bg-washi">
+  <div class="container">
+    <div class="voice-card fade-in">
+      <p class="voice-text">
+        初回から肌の変化を実感できました。くすみが取れて、友人に「顔色よくなったね」と言われるように。スタッフの方がとても丁寧で、次の予約をその場で入れてしまいました。
+      </p>
+      <div class="voice-meta">
+        <div class="voice-avatar">K</div>
+        <div>
+          <p class="voice-name">30代 会社員</p>
+          <p class="voice-stars">★★★★★</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-card fade-in">
+      <p class="voice-text">
+        完全個室なので、完全にリラックスできます。施術後の肌がもちもちで、翌朝のファンデのノリが全然違います。毎月通っています。
+      </p>
+      <div class="voice-meta">
+        <div class="voice-avatar">M</div>
+        <div>
+          <p class="voice-name">40代 経営者</p>
+          <p class="voice-stars">★★★★★</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-card fade-in">
+      <p class="voice-text">
+        LINEでいつでも相談できるのが助かります。化粧品の使い方まで教えてくれて、ホームケアのレベルも上がった気がします。
+      </p>
+      <div class="voice-meta">
+        <div class="voice-avatar">Y</div>
+        <div>
+          <p class="voice-name">20代 看護師</p>
+          <p class="voice-stars">★★★★★</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SALON INFO ===== -->
+<section class="salon-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">Salon</p>
+      <h2 class="section-title">サロン案内</h2>
+    </div>
+
+    <div class="info-table fade-in">
+      <div class="info-row">
+        <span class="info-label">Salon</span>
+        <span class="info-value">Salon Lumière（サロン ルミエール）</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Address</span>
+        <span class="info-value">〒810-0000 福岡市中央区天神○-○-○<br>×× ビル 3F</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Access</span>
+        <span class="info-value">地下鉄空港線「天神駅」徒歩5分</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Hours</span>
+        <span class="info-value">10:00〜20:00（最終受付 19:00）</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Closed</span>
+        <span class="info-value">毎週火曜日・第3水曜日</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">TEL</span>
+        <span class="info-value">○○○-×××-△△△△</span>
+      </div>
+    </div>
+
+    <!-- Map Placeholder -->
+    <div class="map-placeholder fade-in">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(138,138,138,0.6)" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+      </svg>
+      <span>Google Map</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section bg-pink-soft">
+  <div class="container fade-in">
+    <span class="cta-urgency">✦ 初回体験 ¥5,500〜</span>
+    <h2 class="cta-catch serif">
+      まずは、<br>無料カウンセリングから。
+    </h2>
+    <p class="cta-sub">
+      お肌の状態をチェックして、<br>
+      最適なメニューをご提案します。
+    </p>
+    <a href="tel:000-XXX-0000" class="cta-btn cta-btn-primary">
+      お電話で予約する
+    </a>
+    <a href="https://lin.ee/6ArK0h8" class="cta-btn cta-btn-line" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINE で相談・予約
+    </a>
+    <p class="cta-note">
+      LINEでのお問い合わせは24時間受付<br>
+      ※ お返事は営業時間内（10:00〜20:00）となります
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p class="footer-logo eng">Salon Lumière</p>
+    <p class="footer-sub">© 2024 Salon Lumière. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ===== FLOATING CTA ===== -->
+<div class="floating-cta">
+  <a href="tel:000-XXX-0000" class="float-btn float-btn-gold">
+    電話で予約
+  </a>
+  <a href="https://lin.ee/6ArK0h8" class="float-btn float-btn-line">
+    LINEで予約
+  </a>
+</div>
+
+<script>
+// Intersection Observer for fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

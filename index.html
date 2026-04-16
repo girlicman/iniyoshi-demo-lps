@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INIYOSHI AI WORKS — デモLP集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --border: rgba(255,255,255,0.08);
+  --text: #e8e4dc;
+  --muted: #888;
+  --accent: #c8a96e;
+  --accent-dim: rgba(200,169,110,0.15);
+}
+
+html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 80px 24px 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.header-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.9;
+}
+
+/* ===== GRID ===== */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+}
+
+.section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 32px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200,169,110,0.35);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+}
+
+.card:hover::before { opacity: 1; }
+
+/* Card themes */
+.card--salon::before   { background: radial-gradient(ellipse at top left, rgba(200,169,110,0.06), transparent 60%); }
+.card--restaurant::before { background: radial-gradient(ellipse at top left, rgba(200,150,50,0.06), transparent 60%); }
+.card--entertainment::before { background: radial-gradient(ellipse at top left, rgba(100,80,255,0.07), transparent 60%); }
+.card--dark_fantasy::before { background: radial-gradient(ellipse at top left, rgba(150,30,30,0.08), transparent 60%); }
+
+.card-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.badge--salon       { background: rgba(200,169,110,0.15); color: #c8a96e; border: 1px solid rgba(200,169,110,0.25); }
+.badge--restaurant  { background: rgba(200,150,50,0.12); color: #c8a040; border: 1px solid rgba(200,150,50,0.2); }
+.badge--entertainment { background: rgba(100,80,255,0.15); color: #9080ff; border: 1px solid rgba(100,80,255,0.25); }
+.badge--dark_fantasy { background: rgba(180,30,30,0.12); color: #c05050; border: 1px solid rgba(180,30,30,0.2); }
+
+.card-number {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  user-select: none;
+}
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  color: #f0ebe0;
+}
+
+.card-subtitle {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: #aaa;
+  line-height: 1.85;
+  margin-bottom: 28px;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.card-arrow {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+  flex-shrink: 0;
+}
+
+.card:hover .card-arrow {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.card-arrow svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+  transition: stroke 0.3s;
+}
+
+.card:hover .card-arrow svg { stroke: var(--accent); }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 32px 24px 48px;
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+footer a:hover { opacity: 1; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  header { padding: 56px 20px 48px; }
+  main { padding: 48px 16px 64px; }
+  .card { padding: 28px 24px; }
+  .card-title { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">INIYOSHI AI WORKS</div>
+  <div class="tagline">Demo Landing Pages</div>
+  <p class="header-desc">
+    AIが生成した4業種のデモランディングページ。<br>
+    サロン・レストラン・エンタメ・ダークファンタジーの<br>各世界観をご覧ください。
+  </p>
+</header>
+
+<main>
+  <div class="section-label">Demo Portfolio — 4 Works</div>
+
+  <div class="grid">
+
+    <!-- 01: Salon -->
+    <a class="card card--salon" href="./salon/index.html">
+      <span class="card-number">01</span>
+      <span class="card-badge badge--salon">Beauty Salon</span>
+      <h2 class="card-title">Salon Lumière</h2>
+      <p class="card-subtitle">完全予約制 プライベートエステサロン</p>
+      <p class="card-desc">
+        天神エリアの完全個室プライベートサロン。<br>
+        上品なベージュ×ゴールドの世界観で<br>高級エステを訴求するLPデモ。
+      </p>
+      <div class="card-meta">
+        <span>Elegant · Luxury · Feminine</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- 02: Restaurant -->
+    <a class="card card--restaurant" href="./restaurant/index.html">
+      <span class="card-number">02</span>
+      <span class="card-badge badge--restaurant">Fine Dining</span>
+      <h2 class="card-title">Aurum</h2>
+      <p class="card-subtitle">南青山 ファインダイニング</p>
+      <p class="card-desc">
+        南青山の高級レストラン。ブラック×ゴールドの<br>
+        重厚なデザインで食の芸術を表現した<br>Fine DiningスタイルのLPデモ。
+      </p>
+      <div class="card-meta">
+        <span>Dark · Premium · Gastronomic</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- 03: Entertainment -->
+    <a class="card card--entertainment" href="./entertainment/index.html">
+      <span class="card-number">03</span>
+      <span class="card-badge badge--entertainment">Entertainment</span>
+      <h2 class="card-title">PLAYLAND MAX</h2>
+      <p class="card-subtitle">あそびの宇宙、ぜんぶここにある。</p>
+      <p class="card-desc">
+        大阪最大級のエンタメ施設。ネオンカラーと<br>
+        ポップなデザインでボウリング・VR・カラオケ等<br>の多彩な遊びを訴求するLPデモ。
+      </p>
+      <div class="card-meta">
+        <span>Neon · Fun · Bold</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- 04: Dark Fantasy -->
+    <a class="card card--dark_fantasy" href="./dark_fantasy/index.html">
+      <span class="card-number">04</span>
+      <span class="card-badge badge--dark_fantasy">Dark Fantasy</span>
+      <h2 class="card-title">YAMI Inc.</h2>
+      <p class="card-subtitle">闇の先に、光がある。</p>
+      <p class="card-desc">
+        デジタルクリエイティブスタジオ。黒×深紅の<br>
+        ダークファンタジー世界観で個性的な<br>Web制作会社を表現したLPデモ。
+      </p>
+      <div class="card-meta">
+        <span>Dark · Mystical · Creative</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 <a href="https://iniyoshi.com" target="_blank">INIYOSHI AI WORKS</a> — All demos are AI-generated sample pages.</p>
+</footer>
+
+</body>
+</html>
